@@ -178,6 +178,7 @@ public:
 				{
 					if (i == 1 && j == 1) // если он в центре то ищем "Соседа", пропуская центр
 					{
+						center:
 						for (int q = 0; q < 3; q++)
 						{
 							for (int p = 0; p < 3; p++)
@@ -187,19 +188,23 @@ public:
 									bufer_i = q; //запоминаем индексы "Соседа"
 									bufer_j = p;
 
-									bufer_i = i - bufer_i; //находим "шаг"
-									bufer_j = j - bufer_j;
-									bufer_i = i + bufer_i; //находим индексы "недостоющей до тройки" ячейки
-									bufer_j = j + bufer_j;
+									bufer_i = 1 - bufer_i; //находим "шаг"
+									bufer_j = 1 - bufer_j;
+									bufer_i = 1 + bufer_i; //находим индексы "недостоющей до тройки" ячейки
+									bufer_j = 1 + bufer_j;
 									if (arr[bufer_i][bufer_j] == ' ')//если эта ячейка пустая, то запоняем
 									{
 										arr[bufer_i][bufer_j] = 'O';
-										return 0;
+										return 1;
 									}
 								}
 							}
 						}
 					}
+
+					if (arr[1][1] == 'X') //если не в центре, но есть центральный элемент, по переводим на ситуацию "центр"
+						goto center;
+
 					srand(time(NULL)); //если соседей не нашлось или "недостоющая до тройки" занята, то рандомно
 					bool complete = false;
 					while (!complete)
@@ -213,7 +218,7 @@ public:
 							complete = true;
 						}
 					}
-					return 0;
+					return 1;
 				}
 			}
 		}

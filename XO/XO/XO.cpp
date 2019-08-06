@@ -166,6 +166,58 @@ public:
 
 		return complete;
 	}
+
+	int defense()
+	{
+		int bufer_i = -1, bufer_j = -1; // для хранения соседнего элемента
+		for (int i = 0; i < 3; i++) // ищем Х
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				if (arr[i][j] == 'X')
+				{
+					if (i == 1 && j == 1) // если он в центре то ищем "Соседа", пропуская центр
+					{
+						for (int q = 0; q < 3; q++)
+						{
+							for (int p = 0; p < 3; p++)
+							{
+								if (!(q == 1 && p == 1) && arr[q][p] == 'X')
+								{
+									bufer_i = q; //запоминаем индексы "Соседа"
+									bufer_j = p;
+
+									bufer_i = i - bufer_i; //находим "шаг"
+									bufer_j = j - bufer_j;
+									bufer_i = i + bufer_i; //находим индексы "недостоющей до тройки" ячейки
+									bufer_j = j + bufer_j;
+									if (arr[bufer_i][bufer_j] == ' ')//если эта ячейка пустая, то запоняем
+									{
+										arr[bufer_i][bufer_j] = 'O';
+										return 0;
+									}
+								}
+							}
+						}
+					}
+					srand(time(NULL)); //если соседей не нашлось или "недостоющая до тройки" занята, то рандомно
+					bool complete = false;
+					while (!complete)
+					{
+						bufer_i = rand() % 3;
+						bufer_j = rand() % 3;
+
+						if (arr[bufer_i][bufer_j] == ' ')
+						{
+							arr[bufer_i][bufer_j] = 'O';
+							complete = true;
+						}
+					}
+					return 0;
+				}
+			}
+		}
+	}
 };
 
 
@@ -178,7 +230,7 @@ public:
 	void map() // выводит все на экран
 	{
 		system("cls");
-		cout << logic.get_info(0,0)<< "|" << logic.get_info(0, 1) << "|" << logic.get_info(0, 2) << endl;
+		cout << logic.get_info(0, 0) << "|" << logic.get_info(0, 1) << "|" << logic.get_info(0, 2) << endl;
 		cout << "—————" << endl;
 		cout << logic.get_info(1, 0) << "|" << logic.get_info(1, 1) << "|" << logic.get_info(1, 2) << endl;
 		cout << "—————" << endl;
@@ -198,7 +250,8 @@ int main()
 		Sleep(500);
 		if (!game.logic.full() && !game.logic.win())
 		{
-			game.logic.move();
+			game.logic.defense();
+			//game.logic.move();
 			game.map();
 		}
 	}

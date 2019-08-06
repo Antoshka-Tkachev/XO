@@ -12,6 +12,7 @@ class Data //хранит инфо о состянии клеточек
 {
 protected:
 	char arr[3][3];
+
 public:
 	Data() // конструктор
 	{
@@ -19,11 +20,6 @@ public:
 			for (int j = 0; j < 3; j++)
 				arr[i][j] = ' ';
 	}
-
-	/*void set_info(int i, int j) // устанавливет состояние клетки
-	{
-		arr[i][j] = 'O';
-	}*/
 
 	char get_info(int i, int j) // возвращает состояние клетки
 	{
@@ -33,8 +29,7 @@ public:
 	void Enter() // фунция для ввода
 	{
 		bool complete = false;
-		//while (_kbhit()) // возвращает true если нажали клавишу
-		//{
+
 		while (!complete)
 		{
 			switch (_getch()) // возвращает нажатую клавишу
@@ -106,14 +101,13 @@ public:
 				break;
 			}
 		}
-		//}
 	}
 };
 
 class Logic : public Data // логика
 {
 public:
-	void move() // делает ход
+	void move() // делает рандомный ход
 	{
 		srand(time(NULL));
 		int i, j;
@@ -122,7 +116,7 @@ public:
 		{
 			i = rand() % 3;
 			j = rand() % 3;
-			//if (arr[i][j] != 'X' && arr[i][j] != 'O')
+
 			if (arr[i][j] == ' ')
 			{
 				arr[i][j] = 'O';
@@ -205,7 +199,7 @@ public:
 					if (arr[1][1] == 'X') //если не в центре, но есть центральный элемент, по переводим на ситуацию "центр"
 						goto center;
 
-					srand(time(NULL)); //если соседей не нашлось или "недостоющая до тройки" занята, то рандомно
+					srand(time(NULL)); //если не в рассматриваемой ситуации, то рандомно
 					bool complete = false;
 					while (!complete)
 					{
@@ -230,7 +224,6 @@ class Draw //рисовалка
 {
 public:
 	Logic logic;
-	//Data data;
 
 	void map() // выводит все на экран
 	{

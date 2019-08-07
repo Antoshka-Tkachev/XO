@@ -208,7 +208,7 @@ public:
 							for (int p = 0; p < 3; p += 2)
 								if (arr[q][p] == 'X')
 									count++;
-						cout << count;
+
 						if (count > 1) // если элементов 2 и больше, то ищем пары
 						{
 							if ((arr[0][0] == 'X' && arr[2][2] == 'X') || (arr[0][2] == 'X' && arr[2][0] == 'X')) //если пара диагональна
@@ -243,6 +243,57 @@ public:
 								return 1;
 							}
 						}
+					}
+
+					if ((arr[1][0] == 'X' && arr[1][2] == 'X') || (arr[0][1] == 'X' && arr[2][1] == 'X')) //если пара противоположная
+					{
+						if (arr[1][1] == ' ') // и центр свободен, то ставим в центр
+						{
+							arr[1][1] = 'O';
+							return 1;
+						}
+					}
+
+					//8 ситуаций на соседние элементы
+					if (arr[0][0] == 'X' && arr[0][1] == 'X' &&  arr[0][2] == ' ')
+					{
+						arr[0][2] = 'O';
+						return 1;
+					}
+					if (arr[0][1] == 'X' && arr[0][2] == 'X' &&  arr[0][0] == ' ')
+					{
+						arr[0][0] = 'O';
+						return 1;
+					}
+					if (arr[0][2] == 'X' && arr[1][2] == 'X' &&  arr[2][2] == ' ')
+					{
+						arr[2][2] = 'O';
+						return 1;
+					}
+					if (arr[1][2] == 'X' && arr[2][2] == 'X' &&  arr[0][2] == ' ')
+					{
+						arr[0][2] = 'O';
+						return 1;
+					}
+					if (arr[2][2] == 'X' && arr[2][1] == 'X' &&  arr[2][0] == ' ')
+					{
+						arr[2][0] = 'O';
+						return 1;
+					}
+					if (arr[2][0] == 'X' && arr[2][1] == 'X' &&  arr[2][2] == ' ')
+					{
+						arr[2][2] = 'O';
+						return 1;
+					}
+					if (arr[0][0] == 'X' && arr[1][0] == 'X' &&  arr[2][0] == ' ')
+					{
+						arr[2][0] = 'O';
+						return 1;
+					}
+					if (arr[1][0] == 'X' && arr[2][0] == 'X' &&  arr[0][0] == ' ')
+					{
+						arr[0][0] = 'O';
+						return 1;
 					}
 
 					srand(time(NULL)); //если не в рассматриваемой ситуации, то рандомно
@@ -287,12 +338,12 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	Draw game;
 	game.map();
-	while (!game.logic.win()) // пока "не победа"
+	while (!game.logic.full() && !game.logic.win()) // пока "не победа" и есть ячейки
 	{
 		game.logic.Enter();
 		game.map();
 		Sleep(500);
-		if (!game.logic.full() && !game.logic.win())
+		if (!game.logic.full() && !game.logic.win()) // если не победа" и есть ячейки
 		{
 			game.logic.defense();
 			//game.logic.move();

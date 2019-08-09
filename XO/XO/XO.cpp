@@ -26,6 +26,13 @@ public:
 		return arr[i][j];
 	}
 
+	void zeroing()
+	{
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
+				arr[i][j] = ' ';
+	}
+
 	void Enter_X() // фунция для ввода
 	{
 		bool complete = false;
@@ -203,39 +210,64 @@ public:
 		}
 	}
 
-	bool full()
+	bool full(char *result)
 	{
+
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 3; j++)
-			{
 				if (arr[i][j] == ' ')
 					return false;
-			}
+		*result = 'N';
+
 		return true;
 	}
 
-	bool win()
+	bool win(char *result)
 	{
 		bool complete = false;
-		if (arr[0][0] == arr[0][1] && arr[0][1] == arr[0][2] && arr[0][0] != ' ')
-			complete = true;
-		if (arr[1][0] == arr[1][1] && arr[1][1] == arr[1][2] && arr[1][0] != ' ')
-			complete = true;
-		if (arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2] && arr[2][0] != ' ')
-			complete = true;
 
+		if (arr[0][0] == arr[0][1] && arr[0][1] == arr[0][2] && arr[0][0] != ' ')
+		{
+			complete = true;
+			*result = arr[0][0];
+		}
+		if (arr[1][0] == arr[1][1] && arr[1][1] == arr[1][2] && arr[1][0] != ' ')
+		{
+			complete = true;
+			*result = arr[1][0];
+		}
+		if (arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2] && arr[2][0] != ' ')
+		{
+			complete = true;
+			*result = arr[2][0];
+		}
 		if (arr[0][0] == arr[1][0] && arr[1][0] == arr[2][0] && arr[0][0] != ' ')
+		{
 			complete = true;
+			*result = arr[0][0];
+		}
 		if (arr[0][1] == arr[1][1] && arr[1][1] == arr[2][1] && arr[0][1] != ' ')
+		{
 			complete = true;
+			*result = arr[0][1];
+		}
 		if (arr[0][2] == arr[1][2] && arr[1][2] == arr[2][2] && arr[0][2] != ' ')
+		{
 			complete = true;
+			*result = arr[0][2];
+		}
 
 		if (arr[0][0] == arr[1][1] && arr[1][1] == arr[2][2] && arr[0][0] != ' ')
+		{
 			complete = true;
+			*result = arr[0][0];
+		}
 		if (arr[0][2] == arr[1][1] && arr[1][1] == arr[2][0] && arr[0][2] != ' ')
+		{
 			complete = true;
-
+			*result = arr[0][2];
+		}
+		
 		return complete;
 	}
 
@@ -533,6 +565,21 @@ public:
 				}
 			}
 		}
+
+		srand(time(NULL)); //если не в рассматриваемой ситуации, то рандомно
+		bool complete = false;
+		while (!complete)
+		{
+			bufer_i = rand() % 3;
+			bufer_j = rand() % 3;
+
+			if (arr[bufer_i][bufer_j] == ' ')
+			{
+				arr[bufer_i][bufer_j] = 'O';
+				complete = true;
+			}
+		}
+		return 1;
 	}
 };
 
@@ -557,6 +604,8 @@ public:
 		string choice;
 		bool error;
 
+		system("cls");
+
 		do
 		{
 			error = false;
@@ -579,44 +628,146 @@ public:
 
 		} while (error);
 	}
+
+	int move_menu()
+	{
+		string choice;
+		bool error;
+
+		system("cls");
+		do
+		{
+			error = false;
+
+			cout << "Крестики ходят первыми!\n\n"
+				<< "Вы можете:\n"
+				<< "1. Играть крестиками\n"
+				<< "2. Играть ноликами\n"
+				<< "Выберете желаемый вариант: ";
+			cin >> choice;
+
+			if (choice == "1")
+				return 1;
+			else if (choice == "2")
+				return 2;
+
+			error = true;
+
+			system("cls");
+			cout << "Ошбика при выборе!\n" << endl;
+
+		} while (error);
+	}
+
+	void result_info(char* result)
+	{
+		switch (*result)
+		{
+		case 'N':
+			cout << "\n\nНичья!\n\n" << endl;
+			break;
+		case 'X':
+			cout << "\n\nПобедили крестики - X!\n\n" << endl;
+			break;
+		case 'O':
+			cout << "\n\nПобедили нолики - O!\n\n" << endl;
+			break;
+		}
+	}
+
+	int repeat_or_end()
+	{
+		string choice;
+		bool error;
+
+		do
+		{
+			error = false;
+
+			cout << "Вы можете\n"
+				<< "1. Перейти в меню\n"
+				<< "2. Завершить игру\n"
+				<< "Выберете желаемый вариант: ";
+			cin >> choice;
+
+			if (choice == "1")
+				return 1;
+			else if (choice == "2")
+				return 2;
+
+			error = true;
+
+			system("cls");
+			cout << "Ошбика при выборе!\n" << endl;
+
+		} while (error);
+	}
 };
 
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 	Draw game;
-
-	//открываем меню
-	if (game.start_menu() == 1)// с компьютером
+	char* result = new char;
+	
+	do
 	{
-		game.map();
-		while (!game.logic.full() && !game.logic.win()) // пока "не победа" и есть ячейки
+		game.logic.zeroing(); // обнуляем массив
+		//открываем меню
+		if (game.start_menu() == 1)// с компьютером
 		{
-			game.logic.Enter_X();
-			game.map();
-			Sleep(500);
-			if (!game.logic.full() && !game.logic.win()) // если не победа" и есть ячейки
+			if (game.move_menu() == 1)
 			{
-				if (game.logic.attack() == 2)// если атака не выполнилась, то выполняем защиту
-					game.logic.defense();
 				game.map();
+				while (!game.logic.full(result) && !game.logic.win(result)) // пока "не победа" и есть ячейки
+				{
+					game.logic.Enter_X();
+					game.map();
+					Sleep(500);
+					if (!game.logic.full(result) && !game.logic.win(result)) // если не победа" и есть ячейки
+					{
+						if (game.logic.attack() == 2)// если атака не выполнилась, то выполняем защиту
+							game.logic.defense();
+						game.map();
+					}
+				}
+			}
+			else ///////////////////
+			{
+				game.map();
+				while (!game.logic.full(result) && !game.logic.win(result)) // пока "не победа" и есть ячейки
+				{
+					Sleep(500);
+					if (game.logic.attack() == 2)// если атака не выполнилась, то выполняем защиту
+						game.logic.defense();
+					game.map();
+
+					if (!game.logic.full(result) && !game.logic.win(result)) // если не победа" и есть ячейки
+					{
+						game.logic.Enter_X();
+						game.map();
+					}
+				}
 			}
 		}
-	}
-	else// с человеком
-	{
-		game.map();
-		while (!game.logic.full() && !game.logic.win()) // пока "не победа" и есть ячейки
+		else// с человеком
 		{
-			game.logic.Enter_X();
 			game.map();
-
-			if (!game.logic.full() && !game.logic.win()) // если не победа" и есть ячейки
+			while (!game.logic.full(result) && !game.logic.win(result)) // пока "не победа" и есть ячейки
 			{
-
-				game.logic.Enter_O();
+				game.logic.Enter_X();
 				game.map();
+
+				if (!game.logic.full(result) && !game.logic.win(result)) // если не победа" и есть ячейки
+				{
+					game.logic.Enter_O();
+					game.map();
+				}
 			}
 		}
-	}
+		game.result_info(result);
+	} while (game.repeat_or_end() == 1);
+
+	delete result;
+	return 0;
 };

@@ -1,7 +1,7 @@
-#pragma once
+п»ї#pragma once
 #include <conio.h>
 
-class Data //хранит инфо о состянии клеточек
+class Data //С…СЂР°РЅРёС‚ РёРЅС„Рѕ Рѕ СЃРѕСЃС‚СЏРЅРёРё РєР»РµС‚РѕС‡РµРє
 {
 protected:
 	char arr[3][3];

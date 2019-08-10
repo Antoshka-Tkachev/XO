@@ -1,14 +1,14 @@
-#include "pch.h"
+п»ї#include "pch.h"
 #include "Data.h"
 
-Data :: Data() // конструктор
+Data :: Data() // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 {
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 3; j++)
 			arr[i][j] = ' ';
 }
 
-char Data::get_info(int i, int j) // возвращает состояние клетки
+char Data::get_info(int i, int j) // РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРѕСЃС‚РѕСЏРЅРёРµ РєР»РµС‚РєРё
 {
 	return arr[i][j];
 }
@@ -20,13 +20,13 @@ void Data::zeroing()
 			arr[i][j] = ' ';
 }
 
-void Data::Enter_X() // фунция для ввода
+void Data::Enter_X() // С„СѓРЅС†РёСЏ РґР»СЏ РІРІРѕРґР°
 {
 	bool complete = false;
 
 	while (!complete)
 	{
-		switch (_getch()) // возвращает нажатую клавишу
+		switch (_getch()) // РІРѕР·РІСЂР°С‰Р°РµС‚ РЅР°Р¶Р°С‚СѓСЋ РєР»Р°РІРёС€Сѓ
 		{
 		case '1':
 			if (arr[0][0] == ' ')
@@ -97,13 +97,13 @@ void Data::Enter_X() // фунция для ввода
 	}
 }
 
-void Data::Enter_O() // фунция для ввода
+void Data::Enter_O() // С„СѓРЅС†РёСЏ РґР»СЏ РІРІРѕРґР°
 {
 	bool complete = false;
 
 	while (!complete)
 	{
-		switch (_getch()) // возвращает нажатую клавишу
+		switch (_getch()) // РІРѕР·РІСЂР°С‰Р°РµС‚ РЅР°Р¶Р°С‚СѓСЋ РєР»Р°РІРёС€Сѓ
 		{
 		case '1':
 			if (arr[0][0] == ' ')

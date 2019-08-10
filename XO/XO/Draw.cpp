@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "Draw.h"
 
 Draw::Draw()
@@ -23,15 +23,15 @@ void Draw::set_cursor(int x, int y)
 void Draw::rules()
 {
 	set_cursor(9, 5);
-	cout << "Âûáèðàéòå ïîëÿ öèôðàìè íà êëàâèàòóðå â ñîîòâåòñâèè ñî ñõåìîé";
+	cout << "Ð’Ñ‹Ð±Ð¸Ñ€Ð°Ð¹Ñ‚Ðµ Ð¿Ð¾Ð»Ñ Ñ†Ð¸Ñ„Ñ€Ð°Ð¼Ð¸ Ð½Ð° ÐºÐ»Ð°Ð²Ð¸Ð°Ñ‚ÑƒÑ€Ðµ Ð² ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÐ²Ð¸Ð¸ ÑÐ¾ ÑÑ…ÐµÐ¼Ð¾Ð¹";
 	set_cursor(37, 8);
 	cout << "1|2|3";
 	set_cursor(37, 9);
-	cout << "—————";
+	cout << "â€”â€”â€”â€”â€”";
 	set_cursor(37, 10);
 	cout << "4|5|6";
 	set_cursor(37, 11);
-	cout << "—————";
+	cout << "â€”â€”â€”â€”â€”";
 	set_cursor(37, 12);
 	cout << "7|8|9";
 	set_cursor(22, 15);
@@ -39,33 +39,33 @@ void Draw::rules()
 	system("pause");
 }
 
-void Draw::map() // âûâîäèò âñå íà ýêðàí
+void Draw::map() // Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ñ‚ Ð²ÑÐµ Ð½Ð° ÑÐºÑ€Ð°Ð½
 {
 	system("cls");
 	set_cursor(37, 8);
 	cout << logic.get_info(0, 0) << "|" << logic.get_info(0, 1) << "|" << logic.get_info(0, 2);
 	set_cursor(37, 9);
-	cout << "—————";
+	cout << "â€”â€”â€”â€”â€”";
 	set_cursor(37, 10);
 	cout << logic.get_info(1, 0) << "|" << logic.get_info(1, 1) << "|" << logic.get_info(1, 2);
 	set_cursor(37, 11);
-	cout << "—————";
+	cout << "â€”â€”â€”â€”â€”";
 	set_cursor(37, 12);
 	cout << logic.get_info(2, 0) << "|" << logic.get_info(2, 1) << "|" << logic.get_info(2, 2);
 	set_cursor(0, 0);
 }
 
-void Draw::final_map() // âûâîäèò âñå íà ýêðàí
+void Draw::final_map() // Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ñ‚ Ð²ÑÐµ Ð½Ð° ÑÐºÑ€Ð°Ð½
 {
 	system("cls");
 	set_cursor(37, 4);
 	cout << logic.get_info(0, 0) << "|" << logic.get_info(0, 1) << "|" << logic.get_info(0, 2);
 	set_cursor(37, 5);
-	cout << "—————";
+	cout << "â€”â€”â€”â€”â€”";
 	set_cursor(37, 6);
 	cout << logic.get_info(1, 0) << "|" << logic.get_info(1, 1) << "|" << logic.get_info(1, 2);
 	set_cursor(37, 7);
-	cout << "—————";
+	cout << "â€”â€”â€”â€”â€”";
 	set_cursor(37, 8);
 	cout << logic.get_info(2, 0) << "|" << logic.get_info(2, 1) << "|" << logic.get_info(2, 2);
 }
@@ -82,13 +82,13 @@ int Draw::start_menu()
 		error = false;
 
 		set_cursor(27, 10);
-		cout << "Âû ìîæåòå:\n";
+		cout << "Ð’Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ:\n";
 		set_cursor(27, 11);
-		cout << "1. Èãðàòü ñ êîìïüþòåðîì\n";
+		cout << "1. Ð˜Ð³Ñ€Ð°Ñ‚ÑŒ Ñ ÐºÐ¾Ð¼Ð¿ÑŒÑŽÑ‚ÐµÑ€Ð¾Ð¼\n";
 		set_cursor(27, 12);
-		cout << "2. Èãðàòü âäâîåì\n";
+		cout << "2. Ð˜Ð³Ñ€Ð°Ñ‚ÑŒ Ð²Ð´Ð²Ð¾ÐµÐ¼\n";
 		set_cursor(27, 13);
-		cout << "Âûáåðåòå æåëàåìûé âàðèàíò: ";
+		cout << "Ð’Ñ‹Ð±ÐµÑ€ÐµÑ‚Ðµ Ð¶ÐµÐ»Ð°ÐµÐ¼Ñ‹Ð¹ Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚: ";
 		cin >> choice;
 
 		if (choice == "1")
@@ -101,7 +101,7 @@ int Draw::start_menu()
 		system("cls");
 
 		set_cursor(30, 7);
-		cout << "Îøáèêà ïðè âûáîðå!\n" << endl;
+		cout << "ÐžÑˆÐ±Ð¸ÐºÐ° Ð¿Ñ€Ð¸ Ð²Ñ‹Ð±Ð¾Ñ€Ðµ!\n" << endl;
 
 	} while (error);
 }
@@ -117,15 +117,15 @@ int Draw::move_menu()
 		error = false;
 
 		set_cursor(28, 8);
-		cout << "Êðåñòèêè õîäÿò ïåðâûìè!";
+		cout << "ÐšÑ€ÐµÑÑ‚Ð¸ÐºÐ¸ Ñ…Ð¾Ð´ÑÑ‚ Ð¿ÐµÑ€Ð²Ñ‹Ð¼Ð¸!";
 		set_cursor(27, 11);
-		cout << "Âû ìîæåòå:";
+		cout << "Ð’Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ:";
 		set_cursor(27, 12);
-		cout << "1. Èãðàòü êðåñòèêàìè";
+		cout << "1. Ð˜Ð³Ñ€Ð°Ñ‚ÑŒ ÐºÑ€ÐµÑÑ‚Ð¸ÐºÐ°Ð¼Ð¸";
 		set_cursor(27, 13);
-		cout << "2. Èãðàòü íîëèêàìè";
+		cout << "2. Ð˜Ð³Ñ€Ð°Ñ‚ÑŒ Ð½Ð¾Ð»Ð¸ÐºÐ°Ð¼Ð¸";
 		set_cursor(27, 14);
-		cout << "Âûáåðåòå æåëàåìûé âàðèàíò: ";
+		cout << "Ð’Ñ‹Ð±ÐµÑ€ÐµÑ‚Ðµ Ð¶ÐµÐ»Ð°ÐµÐ¼Ñ‹Ð¹ Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚: ";
 		cin >> choice;
 
 		if (choice == "1")
@@ -138,7 +138,7 @@ int Draw::move_menu()
 		system("cls");
 
 		set_cursor(30, 17);
-		cout << "Îøáèêà ïðè âûáîðå!\n" << endl;
+		cout << "ÐžÑˆÐ±Ð¸ÐºÐ° Ð¿Ñ€Ð¸ Ð²Ñ‹Ð±Ð¾Ñ€Ðµ!\n" << endl;
 
 	} while (error);
 }
@@ -152,15 +152,15 @@ int Draw::final_menu()
 	{
 		error = false;
 		set_cursor(32, 14);
-		cout << "Âû ìîæåòå:";
+		cout << "Ð’Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ:";
 		set_cursor(32, 15);
-		cout << "1. Èãðàòü åùå ðàç";
+		cout << "1. Ð˜Ð³Ñ€Ð°Ñ‚ÑŒ ÐµÑ‰Ðµ Ñ€Ð°Ð·";
 		set_cursor(32, 16);
-		cout << "2. Ïåðåéòè â ìåíþ";
+		cout << "2. ÐŸÐµÑ€ÐµÐ¹Ñ‚Ð¸ Ð² Ð¼ÐµÐ½ÑŽ";
 		set_cursor(32, 17);
-		cout << "3. Çàâåðøèòü èãðó";
+		cout << "3. Ð—Ð°Ð²ÐµÑ€ÑˆÐ¸Ñ‚ÑŒ Ð¸Ð³Ñ€Ñƒ";
 		set_cursor(28, 19);
-		cout << "Âûáåðåòå æåëàåìûé âàðèàíò: ";
+		cout << "Ð’Ñ‹Ð±ÐµÑ€ÐµÑ‚Ðµ Ð¶ÐµÐ»Ð°ÐµÐ¼Ñ‹Ð¹ Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚: ";
 		cin >> choice;
 
 		if (choice == "1")
@@ -175,7 +175,7 @@ int Draw::final_menu()
 		system("cls");
 
 		set_cursor(31, 9);
-		cout << "Îøáèêà ïðè âûáîðå!\n" << endl;
+		cout << "ÐžÑˆÐ±Ð¸ÐºÐ° Ð¿Ñ€Ð¸ Ð²Ñ‹Ð±Ð¾Ñ€Ðµ!\n" << endl;
 
 	} while (error);
 }
@@ -188,19 +188,19 @@ void Draw::result_info(char* result)
 	case 'N':
 	{
 		set_cursor(37, 11);
-		cout << "Íè÷üÿ!" << endl;
+		cout << "ÐÐ¸Ñ‡ÑŒÑ!" << endl;
 		break;
 	}
 	case 'X':
 	{
 		set_cursor(30, 11);
-		cout << "Ïîáåäèëè êðåñòèêè - X!" << endl;
+		cout << "ÐŸÐ¾Ð±ÐµÐ´Ð¸Ð»Ð¸ ÐºÑ€ÐµÑÑ‚Ð¸ÐºÐ¸ - X!" << endl;
 		break;
 	}
 	case 'O':
 	{
 		set_cursor(31, 11);
-		cout << "Ïîáåäèëè íîëèêè - O!" << endl;
+		cout << "ÐŸÐ¾Ð±ÐµÐ´Ð¸Ð»Ð¸ Ð½Ð¾Ð»Ð¸ÐºÐ¸ - O!" << endl;
 		break;
 	}
 	}

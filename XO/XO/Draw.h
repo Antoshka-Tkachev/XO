@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 #include <Windows.h>
 #include <string>
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Draw //рисовалка
+class Draw //СЂРёСЃРѕРІР°Р»РєР°
 {
 private:
 	COORD position;

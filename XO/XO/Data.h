@@ -4,19 +4,19 @@
 class Data //хранит инфо о состянии клеточек
 {
 protected:
-	char arr[3][3];
+	char arr[3][3];              //поле для игры
 
 public:
 
-	Data();
+	Data();                      //констуктор
 
-	char get_info(int i, int j);
+	char get_info(int i, int j); //возвращает состояние клетки
 
-	void zeroing();
+	void zeroing();              //обнуляет поле
 
-	void Enter_X();
+	void Enter_X();              //ввод Х
 
-	void Enter_O();
+	void Enter_O();              //ввод О
 
 };
 

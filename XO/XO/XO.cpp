@@ -10,29 +10,29 @@ using namespace std;
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	Draw game;
-	char* result = new char; // победа/поражение/ничья
+	Draw game;               //обект класса интерфейса
+	char* result = new char; // хранит результат (победа/поражение/ничья)
 	int game_mode = 0;		 // режим игры
 	int game_mode_copy = 0;	 //копия режима игры
 
-	game.color();
-	game.rules();
+	game.color(); //меняет цвет консоли
+	game.rules(); //выводит начальные правила
 
 	do
 	{
 		game.logic.zeroing(); // обнуляем массив
 		
-		if(game_mode == 0)
+		if(game_mode == 0)	  //если режим игры не выбран (равен 0)
 			game_mode = game.start_menu(); //открываем меню
 
 		if (game_mode == 1)// если игра с компьютером
 		{
 			if (game.move_menu() == 1) // если ходишь первым
 			{
-				game.map();
+				game.map(); //рисуем карту
 				while (!game.logic.full(result) && !game.logic.win(result)) // пока "не победа" и есть ячейки
 				{
-					game.logic.Enter_X();
+					game.logic.Enter_X(); // ждет ввода хода
 					game.map();
 					Sleep(500);
 					if (!game.logic.full(result) && !game.logic.win(result)) // если не победа" и есть ячейки
@@ -46,7 +46,7 @@ int main()
 			else //если ходишь 2ым
 			{
 				game.map();
-				while (!game.logic.full(result) && !game.logic.win(result)) // пока "не победа" и есть ячейки
+				while (!game.logic.full(result) && !game.logic.win(result))  // пока "не победа" и есть ячейки
 				{
 					Sleep(500);
 					if (game.logic.attack_X() == 2)// если атака не выполнилась, то выполняем защиту
@@ -64,7 +64,7 @@ int main()
 		else// с человеком
 		{
 			game.map();
-			while (!game.logic.full(result) && !game.logic.win(result)) // пока "не победа" и есть ячейки
+			while (!game.logic.full(result) && !game.logic.win(result))  // пока "не победа" и есть ячейки
 			{
 				game.logic.Enter_X();
 				game.map();
@@ -76,13 +76,13 @@ int main()
 				}
 			}
 		}
-		game.result_info(result);
+		game.result_info(result);           //выводим результат игры
 
-		game_mode_copy = game.final_menu();
-		if (game_mode_copy == 2) // если выбрали "меню", то обнулить режим игры
+		game_mode_copy = game.final_menu(); // сохраняет выбор в "финальном меню"
+		if (game_mode_copy == 2)            // если выбрали "вернуться в меню", то обнуляем режим игры
 			game_mode = 0;
 
-	} while (game_mode_copy != 3);
+	} while (game_mode_copy != 3); //пока не выбрали "завершить игру"
 
 	delete result;
 	return 0;

@@ -6,34 +6,34 @@
 
 using namespace std;
 
-class Draw //рисовалка
+class Draw //интерфейс
 {
 private:
-	COORD position;
+	COORD position;  //координаты курсора
 	HANDLE hConsole;
 
 public:
-	Logic logic;
+	Logic logic; //обьект логики
 
-	Draw();
+	Draw();                           //конструктор
 
-	void color();
+	void color();                     // задает цвет консоли
 
-	void set_cursor(int x, int y);
+	void set_cursor(int x, int y);    //устанавливает курсор
 
-	void rules();
+	void rules();                     // выводит начальный правила
 
-	void map();
+	void map();                       // выводит карту
 
-	void final_map();
+	void final_map();                 // выводит карту после конца игры
 
-	int start_menu();
+	int start_menu();                 // выводит стартовое меню (выбор режима игры)
 
-	int move_menu();
+	int move_menu();                  // меню выбора хода
 
-	int final_menu();
+	int final_menu();                 // финальное меню
 
-	void result_info(char* result);
+	void result_info(char* result);   // выводит результат игры(Победа и тд)
 
 };
 

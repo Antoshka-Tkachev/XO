@@ -13,14 +13,14 @@ char Data::get_info(int i, int j) // возвращает состояние к�
 	return arr[i][j];
 }
 
-void Data::zeroing()
+void Data::zeroing() //обнуляет поле
 {
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 3; j++)
 			arr[i][j] = ' ';
 }
 
-void Data::Enter_X() // фунция для ввода
+void Data::Enter_X() // фунция для ввода Х
 {
 	bool complete = false;
 
@@ -97,7 +97,7 @@ void Data::Enter_X() // фунция для ввода
 	}
 }
 
-void Data::Enter_O() // фунция для ввода
+void Data::Enter_O() // фунция для ввода О
 {
 	bool complete = false;
 

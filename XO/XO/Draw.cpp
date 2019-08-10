@@ -1,26 +1,26 @@
 ﻿#include "pch.h"
 #include "Draw.h"
 
-Draw::Draw()
+Draw::Draw() //конструктор
 {
 	position.X = 0;
 	position.Y = 0;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
-void Draw::color()
+void Draw::color() // задает цвет консоли
 {
 	system("color 1B");
 }
 
-void Draw::set_cursor(int x, int y)
+void Draw::set_cursor(int x, int y) // передвигает курсор
 {
 	position.X = x;
 	position.Y = y;
 	SetConsoleCursorPosition(hConsole, position);
 }
 
-void Draw::rules()
+void Draw::rules() // Выводит менюшку с правилами
 {
 	set_cursor(9, 5);
 	cout << "Выбирайте поля цифрами на клавиатуре в соответсвии со схемой";
@@ -39,7 +39,7 @@ void Draw::rules()
 	system("pause");
 }
 
-void Draw::map() // выводит все на экран
+void Draw::map() // выводит игровую ситуацию
 {
 	system("cls");
 	set_cursor(37, 8);
@@ -55,7 +55,7 @@ void Draw::map() // выводит все на экран
 	set_cursor(0, 0);
 }
 
-void Draw::final_map() // выводит все на экран
+void Draw::final_map() // выводит игровую ситуацию поосле завершения игры
 {
 	system("cls");
 	set_cursor(37, 4);
@@ -70,7 +70,7 @@ void Draw::final_map() // выводит все на экран
 	cout << logic.get_info(2, 0) << "|" << logic.get_info(2, 1) << "|" << logic.get_info(2, 2);
 }
 
-int Draw::start_menu()
+int Draw::start_menu() // выводит стартовое меню, возвращает выбранный вариант
 {
 	string choice;
 	bool error;
@@ -106,7 +106,7 @@ int Draw::start_menu()
 	} while (error);
 }
 
-int Draw::move_menu()
+int Draw::move_menu() // выводит меню хода, возвращает выбранный вариант
 {
 	string choice;
 	bool error;
@@ -143,7 +143,7 @@ int Draw::move_menu()
 	} while (error);
 }
 
-int Draw::final_menu()
+int Draw::final_menu() // выводит финальное меню, возвращает выбранный вариант
 {
 	string choice;
 	bool error;
@@ -180,10 +180,10 @@ int Draw::final_menu()
 	} while (error);
 }
 
-void Draw::result_info(char* result)
+void Draw::result_info(char* result) //выводит, кто победил
 {
-	final_map();
-	switch (*result)
+	final_map();		//вызывает финальное меню
+	switch (*result)	
 	{
 	case 'N':
 	{

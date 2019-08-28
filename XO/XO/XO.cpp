@@ -30,12 +30,12 @@ int main()
 			if (game.move_menu() == 1) // если ходишь первым
 			{
 				game.map(); //рисуем карту
-				while (!game.logic.full(result) && !game.logic.win(result)) // пока "не победа" и есть ячейки
+				while (!game.logic.win(result) && !game.logic.full(result)) // пока "не победа" и есть ячейки
 				{
 					game.logic.Enter_X(); // ждет ввода хода
 					game.map();
 					Sleep(500);
-					if (!game.logic.full(result) && !game.logic.win(result)) // если не победа" и есть ячейки
+					if (!game.logic.win(result) && !game.logic.full(result)) // если не победа" и есть ячейки
 					{
 						if (game.logic.attack_O() == 2)// если атака не выполнилась, то выполняем защиту
 							game.logic.defense_O();
@@ -46,14 +46,14 @@ int main()
 			else //если ходишь 2ым
 			{
 				game.map();
-				while (!game.logic.full(result) && !game.logic.win(result))  // пока "не победа" и есть ячейки
+				while (!game.logic.win(result) && !game.logic.full(result))  // пока "не победа" и есть ячейки
 				{
 					Sleep(500);
 					if (game.logic.attack_X() == 2)// если атака не выполнилась, то выполняем защиту
 						game.logic.defense_X();
 					game.map();
 
-					if (!game.logic.full(result) && !game.logic.win(result)) // если "не победа" и есть ячейки
+					if (!game.logic.win(result) && !game.logic.full(result)) // если "не победа" и есть ячейки
 					{
 						game.logic.Enter_O();
 						game.map();
@@ -64,12 +64,12 @@ int main()
 		else// с человеком
 		{
 			game.map();
-			while (!game.logic.full(result) && !game.logic.win(result))  // пока "не победа" и есть ячейки
+			while (!game.logic.win(result) && !game.logic.full(result))  // пока "не победа" и есть ячейки
 			{
 				game.logic.Enter_X();
 				game.map();
 
-				if (!game.logic.full(result) && !game.logic.win(result)) // если "не победа" и есть ячейки
+				if (!game.logic.win(result) && !game.logic.full(result)) // если "не победа" и есть ячейки
 				{
 					game.logic.Enter_O();
 					game.map();

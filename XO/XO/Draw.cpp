@@ -101,7 +101,7 @@ int Draw::start_menu() // выводит стартовое меню, возвр
 		system("cls");
 
 		set_cursor(30, 7);
-		cout << "Ошбика при выборе!\n" << endl;
+		cout << "Ошибка при выборе!\n" << endl;
 
 	} while (error);
 }
@@ -138,7 +138,7 @@ int Draw::move_menu() // выводит меню хода, возвращает 
 		system("cls");
 
 		set_cursor(30, 17);
-		cout << "Ошбика при выборе!\n" << endl;
+		cout << "Ошибка при выборе!\n" << endl;
 
 	} while (error);
 }
@@ -175,7 +175,7 @@ int Draw::final_menu() // выводит финальное меню, возвр
 		system("cls");
 
 		set_cursor(31, 9);
-		cout << "Ошбика при выборе!\n" << endl;
+		cout << "Ошибка при выборе!\n" << endl;
 
 	} while (error);
 }
